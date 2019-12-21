@@ -1,0 +1,227 @@
+﻿Build1=ChatHN,ChatHN.com,Completo
+File1=51o-qd2E1PL.png
+File2=google-services.json
+File3=icon.png
+File4=lytchat.bal
+File5=lytLogin.bal
+File6=lytMenu.bal
+File7=lytRegistrar.bal
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+Library10=firebasenotifications
+Library11=phone
+Library2=okhttp
+Library3=okhttputils2
+Library4=json
+Library5=ime
+Library6=runtimepermissions
+Library7=javaobject
+Library8=appcompat
+Library9=firebaseanalytics
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~'AddManifestText(~\n~'<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~'<supports-screens android:largeScreens="true" ~\n~'    android:normalScreens="true" ~\n~'    android:smallScreens="true" ~\n~'    android:anyDensity="true"/>)~\n~'SetApplicationAttribute(android:icon, "@drawable/icon")~\n~'SetApplicationAttribute(android:label, "$LABEL$")~\n~'CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~~\n~~\n~'#######################################~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo.Light")~\n~SetApplicationAttribute(android:hardwareAccelerated, "true")~\n~~\n~~\n~AddPermission(android.permission.WRITE_EXTERNAL_STORAGE)~\n~SetApplicationAttribute(android:theme, "@style/MyAppTheme")~\n~~\n~CreateResource(values, theme.xml,~\n~<resources>~\n~    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">~\n~        <item name="colorPrimary">#0098FF</item>~\n~        <item name="colorPrimaryDark">#007CF5</item>~\n~        <item name="colorAccent">#AAAA00</item>~\n~        <item name="windowNoTitle">true</item>~\n~        <item name="windowActionBar">false</item>~\n~    </style>~\n~</resources>~\n~)~\n~~\n~~\n~CreateResourceFromFile(Macro, FirebaseAnalytics.GooglePlayBase)~\n~CreateResourceFromFile(Macro, FirebaseAnalytics.Firebase)~\n~CreateResourceFromFile(Macro, FirebaseNotifications.FirebaseNotifications)~\n~CreateResourceFromFile(Macro, FirebaseAuth.FirebaseAuth)~\n~'~\n~AddApplicationText(~\n~   <provider~\n~  android:authorities="${applicationId}.firebaseinitprovider"~\n~  android:name="com.google.firebase.provider.FirebaseInitProvider"~\n~  android:exported="false"~\n~  android:initOrder="100" />~\n~)~\n~~\n~CreateResourceFromFile (Macro, FirebaseAuth.FirebaseAuth)~\n~''************ Firebase Auth ************~\n~AddApplicationText(~\n~  <activity~\n~            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"~\n~            android:excludeFromRecents="true"~\n~            android:exported="true"~\n~            android:launchMode="singleInstance"~\n~            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"~\n~            android:theme="@android:style/Theme.Translucent.NoTitleBar" />~\n~~\n~            <activity~\n~            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"~\n~            android:excludeFromRecents="true"~\n~            android:exported="false"~\n~            android:theme="@android:style/Theme.Translucent.NoTitleBar" />~\n~~\n~        <!--~\n~            Service handling Google Sign-In user revocation. For apps that do not integrate with~\n~            Google Sign-In,, this service will never be started.~\n~        -->~\n~        <service~\n~            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"~\n~            android:exported="true"~\n~            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />)~\n~'************ Firebase Auth (end) ************~\n~~\n~~\n~~\n~
+Module1=Generales
+Module2=chat
+Module3=Starter
+Module4=Menu
+Module5=Registrar
+Module6=FirebaseMessaging
+NumberOfFiles=7
+NumberOfLibraries=11
+NumberOfModules=6
+Version=9.3
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Chat Test 1.0
+	#VersionCode: 1
+	#VersionName: 1.1
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+		#CanInstallToExternalStorage: False
+	#DebuggerForceStandardAssets: True
+#End Region
+#AdditionalJar: com.google.android.gms:play-services-base
+'#Extends: android.support.v7.app.AppCompatActivity
+'#AdditionalJar: com.android.support:support-compat
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: False
+#End Region
+
+#BridgeLogger: True
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+
+	Private TxtUser As EditText
+	Private TxtPass As EditText
+	Dim IME As IME
+	Dim rp As RuntimePermissions
+	Private Chb As CheckBox
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	StopService(Starter)
+	Activity.LoadLayout("lytLogin")
+	IME.Initialize("")
+	IME.SetLengthFilter(TxtPass, 4)
+	IME.Initialize("")
+	IME.SetLengthFilter(TxtUser, 8)
+'	CheckForGooglePlayServices
+	Try
+		If File.Exists(File.DirInternal,"chatuser.txt") Then
+			Dim listUser As List
+			Dim VALOR As String
+			listUser=File.ReadList(File.DirInternal,"chatuser.txt")
+			VALOR=listUser.Get(0)
+			If(VALOR.Length>1)Then
+				Chb.Checked=True
+				Generales.Usuario=listUser.Get(0)
+				StartService(Starter)
+				Activity.Finish
+				StartActivity(Menu)
+			End If
+		
+		End If
+	Catch
+		Log(LastException)
+	End Try
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+'
+'Sub Auth_SignedIn (User As FirebaseUser)
+'	Msgbox( "Hello: " & User.DisplayName,"")
+'End Sub
+
+Sub BtnLogin_Click
+'	auth.SignInWithGoogle
+'	
+'	Return
+	Generales.Usuario=TxtUser.Text.Trim
+	Generales.Pass=TxtPass.Text.Trim
+	
+	If(TxtUser.Text.EqualsIgnoreCase("")) Then
+		ToastMessageShow("Ingrese un usuario",False)
+		Return
+	End If
+	If(TxtPass.Text.EqualsIgnoreCase("")) Then
+		ToastMessageShow("Ingrese una clave",False)
+		Return
+	End If
+	
+	Try
+		ProgressDialogShow2("Espere por favor..."& CRLF &"Inciando Registro...",False)
+		Dim response As String
+		Dim HttpLogin As HttpJob
+		HttpLogin.Initialize("HttpLogin",Me)
+		HttpLogin.PostString(Generales.Url& "ConsultaMaster2","Base=cthTUsuarios&Esquema=INTRANET&ValParametro=SI&Paremetros=[{'Key':'usuario','Valor':'"& TxtUser.Text.Trim &"'},{'Key':'clave','Valor':'"& TxtPass.Text.Trim &"'}]'")
+		HttpLogin.GetRequest.SetContentType("application/x-www-form-urlencoded")
+		HttpLogin.GetRequest.SetHeader("Accept","application/json")
+		HttpLogin.GetRequest.SetHeader("Authorization","AIzaSyDYOkkTJiTPVd2U7EaTOAwhcN9ySH6GoHxOIYOM")
+		HttpLogin.GetRequest.Timeout=20000
+		Wait For (HttpLogin) JobDone(JobServer As HttpJob)
+		If JobServer.Success = True Then
+			response=JobServer.GetString
+			Dim json As JSONParser
+			json.Initialize(response)
+			Dim m As Map = json.NextObject
+			m= m.Get("wsrespuesta")
+			Dim ValorCod As String= m.Get("codError")
+			If(ValorCod.EqualsIgnoreCase("0"))Then				
+				Dim lis As List=m.Get("data")
+				m=lis.Get(0)
+				If(TxtUser.Text.Trim.EqualsIgnoreCase(m.Get("pusuario"))) Then
+					ToastMessageShow("Bienvenido...",False)
+					If(Chb.Checked) Then
+						If File.Exists(File.DirInternal,"chatuser.txt") Then
+							File.Delete(File.DirInternal,"chatuser.txt")
+							Dim lista As List
+							lista.Initialize
+							lista.Add(TxtUser.Text)
+							lista.Add(True)
+							File.WriteList(File.DirInternal,"chatuser.txt",lista)
+						Else
+							Dim lista As List
+							lista.Initialize
+							lista.Add(TxtUser.Text)
+							lista.Add(True)
+							File.WriteList(File.DirInternal,"chatuser.txt",lista)
+						End If
+					Else
+						Dim lista As List
+						lista.Initialize
+						lista.Add(TxtUser.Text)
+						lista.Add(False)				
+						File.WriteList(File.DirInternal,"chatuser.txt",lista)				
+					End If
+					ProgressDialogHide
+					TxtUser.Text=""
+					TxtPass.Text=""
+					StartService(Starter)
+					StartActivity(Menu)
+				
+				End If
+	
+			Else
+				ProgressDialogHide
+				Msgbox("Error al iniciar valide sus credenciales.","Notificatión!!!")
+			End If
+		Else
+			ProgressDialogHide
+			Msgbox("Error de conexión"&CRLF&"Valide sus datos moviles","Notificación!!!")
+		End If
+	Catch
+		ProgressDialogHide
+		Msgbox("Error al iniciar valide sus credenciales.","Notificatión!!!")
+	End Try
+
+End Sub
+
+Sub LblRegistre_Click
+	StartActivity(Registrar)
+End Sub
+
+
+Sub Chb_CheckedChange(Checked As Boolean)
+	rp.CheckAndRequest(rp.PERMISSION_WRITE_EXTERNAL_STORAGE)
+	Wait For Activity_PermissionResult (Permission As String, PResult As Boolean)
+	If PResult = False Then
+		MsgboxAsync("No tiene permiso para utilizar la camara del dispositivo", "")
+		Return
+	End If
+End Sub
+
+Sub CheckForGooglePlayServices As Boolean
+	Dim GoogleApiAvailablity As JavaObject
+	GoogleApiAvailablity = GoogleApiAvailablity.InitializeStatic("com.google.android.gms.common.GoogleApiAvailability").RunMethod("getInstance", Null)
+	Dim context As JavaObject
+	context.InitializeContext
+	If GoogleApiAvailablity.RunMethod("isGooglePlayServicesAvailable", Array(context)) <> 0 Then
+		GoogleApiAvailablity.RunMethod("makeGooglePlayServicesAvailable", Array(context))
+		Return False
+	End If
+	Return True
+	
+	
+End Sub

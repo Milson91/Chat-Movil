@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="firebase_database_url" translatable="false">https://chattest-1a9f3.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">725279127751</string>
+  <string name="google_storage_bucket" translatable="false">chattest-1a9f3.appspot.com</string>
+  <string name="project_id" translatable="false">chattest-1a9f3</string>
+  <string name="google_app_id" translatable="false">1:725279127751:android:c2e31152fce430445226e2</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAN047tJh1fIai_A-m8JdcYIwptmfWKnrk</string>
+  <string name="google_api_key" translatable="false">AIzaSyAN047tJh1fIai_A-m8JdcYIwptmfWKnrk</string>
+  <string name="default_web_client_id" translatable="false">725279127751-3ird5pou1rhp2ptbkpahf23ij1b59bu8.apps.googleusercontent.com</string>
+</resources>
